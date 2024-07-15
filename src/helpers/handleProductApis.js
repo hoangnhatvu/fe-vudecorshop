@@ -14,7 +14,7 @@ const searchProducts = async data => {
   }
 };
 const searchImage = async data => {
-  const endpoint = `http://192.168.1.5:8000/predict/`;
+  const endpoint = `${API_URL_SEARCH_IMAGE}predict/`;
   const body = data;
   try {
     const response = await axios.post(endpoint, body, {

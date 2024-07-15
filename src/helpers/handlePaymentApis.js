@@ -1,16 +1,16 @@
 import axios from 'axios';
 import requestApi from './apiConfig';
 import moment from 'moment';
-import {VNPAY_URL, VNP_TMNCODE, VNP_HASHSECRET} from '@env';
+import {GHN_URL, GHN_TOKEN} from '@env';
 import querystring from 'qs';
 import CryptoJS from 'crypto-js';
 
-const token = '101e2d64-95a3-11ee-b1d4-92b443b7a897';
+const token = GHN_TOKEN;
 
 const calculateFeeShip = async (districtId, wardCode, codAmount) => {
   try {
     const endpoint =
-      'https://dev-online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/fee';
+      `${GHN_URL}shiip/public-api/v2/shipping-order/fee`;
     const response = await axios.post(
       endpoint,
       {

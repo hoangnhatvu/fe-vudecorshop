@@ -1,10 +1,11 @@
 import axios from 'axios';
+import {GHN_URL, GHN_TOKEN} from '@env';
 
-const token = '101e2d64-95a3-11ee-b1d4-92b443b7a897';
+const token = GHN_TOKEN;
 
 const getProvinces = async () => {
   try {
-    const endpoint = `https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/province`;
+    const endpoint = `${GHN_URL}shiip/public-api/master-data/province`;
     const response = await axios.get(endpoint, {
       headers: {
         Token: token,
@@ -21,8 +22,7 @@ const getDistrictsByProvince = async provinceId => {
     if (!provinceId) {
       throw new Error('Vui lòng chọn tỉnh thành trước!');
     }
-    const endpoint =
-      'https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/district';
+    const endpoint = `${GHN_URL}shiip/public-api/master-data/district`;
     const response = await axios.get(endpoint, {
       headers: {
         Token: token,
@@ -42,8 +42,7 @@ const getWardsByDistrict = async districtId => {
     if (!districtId) {
       throw new Error('Vui lòng chọn quận huyện trước !');
     }
-    const endpoint =
-      'https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/ward';
+    const endpoint = `${GHN_URL}shiip/public-api/master-data/ward`;
     const response = await axios.get(endpoint, {
       headers: {
         Token: token,
