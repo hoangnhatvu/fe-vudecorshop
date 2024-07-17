@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     borderRadius: SIZES.large,
   },
   cartRow: {
-    bottom: 30,
+    bottom:0,
     padding: SIZES.small,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -122,6 +122,23 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.primary,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  cartCount: {
+    position: "absolute",
+    bottom: 16,
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+    alignItems: "center",
+    backgroundColor: "green",
+    justifyContent: "center",
+    zIndex: 999,
+  },
+  cartNumber: {
+    fontFamily: "OpenSans-Regular",
+    fontWeight: "600",
+    fontSize: 10,
+    color: COLORS.lightWhite
   },
   imageUser: {
     width: 34,

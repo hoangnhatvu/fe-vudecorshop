@@ -96,7 +96,7 @@ const Payment = ({navigation}) => {
       });
 
       if (paymentMethod.label === 'VNPAY') {
-        const vpnUrl = await createPayment(15000, responseOrder.id );
+        const vpnUrl = await createPayment(total + feeShip, responseOrder.id);
         navigation.navigate('VNPay', {vpnUrl});
       } else {
         navigation.navigate('OrderSuccess');

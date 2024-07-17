@@ -34,6 +34,12 @@ const ProductDetail = ({navigation}) => {
   const [listReviews, setListReviews] = useState(null);
   const [averageRate, setAverageRate] = useState(0);
   const dispatch = useDispatch();
+  const [cartNumber, setCartNumber] = useState(0);
+
+  const loadData = async () => {
+    const cartList = await CartManager.getCartItems();
+    setCartNumber(cartList.length);
+  };
 
   const warning = () => {
     Alert.alert(
@@ -76,6 +82,7 @@ const ProductDetail = ({navigation}) => {
 
   useEffect(() => {
     getReviews();
+    loadData();
   }, []);
 
   useEffect(() => {
@@ -116,6 +123,7 @@ const ProductDetail = ({navigation}) => {
           showToast('Vượt quá số lượng sản phẩm trong kho', 'warning');
         } else {
           await CartManager.addToCart(product, count, optionProduct);
+          loadData();
           showToast('Đã thêm sản phẩm vào giỏ hàng !', 'success');
         }
       } catch (error) {
@@ -130,9 +138,14 @@ const ProductDetail = ({navigation}) => {
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <IonIcon name="chevron-back-circle" size={30} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => {}}>
-            <IonIcon name="heart" size={30} color={COLORS.primary} />
-          </TouchableOpacity>
+          <View style={{alignItems: 'flex-end'}}>
+            <View style={styles.cartCount}>
+              <Text style={styles.cartNumber}> {cartNumber} </Text>
+            </View>
+            <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+              <Fontisto name="shopping-bag" size={24} />
+            </TouchableOpacity>
+          </View>
         </View>
 
         <Image
